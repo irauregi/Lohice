@@ -15,7 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.viewmodel.compose.viewmodel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import com.example.tasktracker.notification.NotificationHelper
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainAppScreen(viewModel: TaskViewModel = viewmodel()) {
+fun MainAppScreen(viewModel: TaskViewModel = viewModel()) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -95,7 +95,7 @@ fun MainAppScreen(viewModel: TaskViewModel = viewmodel()) {
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.BarChart, contentDescription = "Resumen") },
+                    icon = { Icon(Icons.Default.Info, contentDescription = "Resumen") },
                     label = { Text("Resumen") },
                     selected = currentRoute == "stats",
                     onClick = {
