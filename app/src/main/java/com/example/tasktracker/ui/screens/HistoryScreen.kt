@@ -24,7 +24,7 @@ fun HistoryScreen(viewModel: TaskViewModel) {
     val taskMap = remember(tasks) { tasks.associateBy { it.id } }
 
     var selectedTaskId by remember { mutableStateOf<Long?>(null) }
-    var filterType by remember { mutableStateOf("ALL") } // ALL, TODAY, WEEK
+    var filterType by remember { mutableStateOf("ALL") }
 
     var logToEdit by remember { mutableStateOf<TaskLog?>(null) }
 
@@ -93,7 +93,7 @@ fun HistoryScreen(viewModel: TaskViewModel) {
 
             ExposedDropdownMenuBox(
                 expanded = expandedTaskDropdown,
-                onExpandedChange = { expandedTaskDropdown = !expandedTaskDropdown }
+                onExpandedChange = { expandedTaskDropdown = it }
             ) {
                 OutlinedTextField(
                     value = selectedTaskName,
@@ -107,7 +107,7 @@ fun HistoryScreen(viewModel: TaskViewModel) {
                 )
                 ExposedDropdownMenu(
                     expanded = expandedTaskDropdown,
-                    onExpandedChange = { expandedTaskDropdown = false }
+                    onDismissRequest = { expandedTaskDropdown = false }
                 ) {
                     DropdownMenuItem(
                         text = { Text("Todas las tareas") },
@@ -128,7 +128,7 @@ fun HistoryScreen(viewModel: TaskViewModel) {
                 }
             }
 
-            Divider()
+            HorizontalDivider()
 
             if (filteredLogs.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
