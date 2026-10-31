@@ -54,7 +54,7 @@ fun TaskListScreen(viewModel: TaskViewModel) {
                 title = { Text("Mis Tareas Ocasionales") },
                 actions = {
                     IconButton(onClick = { showArchivedDialog = true }) {
-                        Icon(Icons.Default.Archive, contentDescription = "Ver archivadas")
+                        Icon(Icons.Default.Lock, contentDescription = "Ver archivadas")
                     }
                 }
             )
@@ -109,14 +109,13 @@ fun TaskListScreen(viewModel: TaskViewModel) {
                                         IconButton(onClick = {
                                             viewModel.archiveTask(task, true)
                                         }) {
-                                            Icon(Icons.Default.Archive, contentDescription = "Archivar", tint = MaterialTheme.colorScheme.secondary)
+                                            Icon(Icons.Default.Lock, contentDescription = "Archivar", tint = MaterialTheme.colorScheme.secondary)
                                         }
                                     }
                                 }
 
                                 Spacer(modifier = Modifier.height(12.dp))
 
-                                // Dos botones separados para "Lo hice" y "No lo hice"
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -148,7 +147,6 @@ fun TaskListScreen(viewModel: TaskViewModel) {
         }
     }
 
-    // Diálogo para añadir tarea
     if (showAddDialog) {
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
@@ -180,7 +178,6 @@ fun TaskListScreen(viewModel: TaskViewModel) {
         )
     }
 
-    // Diálogo para renombrar
     if (taskToRename != null) {
         AlertDialog(
             onDismissRequest = { taskToRename = null },
@@ -211,7 +208,6 @@ fun TaskListScreen(viewModel: TaskViewModel) {
         )
     }
 
-    // Diálogo de tareas archivadas
     if (showArchivedDialog) {
         val archivedTasks = allTasks.filter { it.isArchived }
         AlertDialog(
