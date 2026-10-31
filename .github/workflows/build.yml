@@ -19,6 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Generar Gradle Wrapper Automaticamente
+      run: |
+        gradle --version || true
+        gradle_version="8.4"
+        curl -sLo gradle.zip https://services.gradle.org/distributions/gradle-${gradle_version}-bin.zip
+        unzip -q gradle.zip
+        gradle-${gradle_version}/bin/gradle wrapper --gradle-version ${gradle_version}
+
     - name: Permisos para Gradle
       run: chmod +x gradlew || true
 
